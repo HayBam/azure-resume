@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function updateCounter() {
         try {
-            const response = await fetch('http://localhost:7071/api/CounterTrigger');
+            const response = await fetch('http://localhost:7071/api/counterTrigger');
             
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
