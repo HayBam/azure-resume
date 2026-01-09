@@ -1,0 +1,13 @@
+{
+  "name": "azure-resume-counter",
+  "version": "1.0.0",
+  "description": "Azure Function to count resume visits",
+  "scripts": {
+    "start": "func start",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "dependencies": {
+    "@azure/functions": "^4.0.0",
+    "@azure/cosmos": "^3.17.3"
+  }
+}
