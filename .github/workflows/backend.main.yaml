@@ -7,7 +7,7 @@ on:
       - 'backend/api/**'
 
 env:
-  AZURE_FUNCTIONAPP_NAME: 'resume-counter-c0excbeyddbdg6ac'
+  AZURE_FUNCTIONAPP_NAME: 'resume-counter'
   AZURE_FUNCTIONAPP_PACKAGE_PATH: 'backend/api'
   NODE_VERSION: '20.x'
 
@@ -52,9 +52,9 @@ jobs:
           -d '{"test":"deployment"}')
         
         if echo "$RESPONSE" | grep -q "success"; then
-          echo "✅ Deployment successful!"
+          echo "Deployment successful!"
         else
-          echo "❌ Deployment verification failed"
+          echo "Deployment verification failed"
           echo "Response: $RESPONSE"
           exit 1
         fi
