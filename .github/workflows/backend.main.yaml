@@ -1,53 +1,26 @@
-name: CI/CD for Azure Function
+name: Deploy Azure Function
 
 on:
   push:
     branches: [ main ]
     paths:
       - 'backend/api/**'
-  pull_request:
-    branches: [ main ]
-    paths:
-      - 'backend/api/**'
 
 env:
-  AZURE_FUNCTIONAPP_NAME: 'resume-counter'
+  AZURE_FUNCTIONAPP_NAME: 'resume-counter-c0excbeyddbdg6ac'
   AZURE_FUNCTIONAPP_PACKAGE_PATH: 'backend/api'
   NODE_VERSION: '20.x'
 
 jobs:
-  test:
+  deploy:
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./backend/api
     
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Setup Node.js ${{ env.NODE_VERSION }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ env.NODE_VERSION }}
-        cache: 'npm'
-        cache-dependency-path: './backend/api/package-lock.json'
-
-    - name: Install dependencies
-      run: |
-        npm install
-        npm install --save-dev jest cross-env
-
-    - name: Run tests
-      run: npx jest
-
-  deploy:
-    needs: test
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./backend/api
+    environment:
+      name: production
+      url: https://${{ env.AZURE_FUNCTIONAPP_NAME }}.azurewebsites.net
     
     steps:
     - name: Checkout code
