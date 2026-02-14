@@ -11,7 +11,7 @@ on:
       - 'backend/api/**'
 
 env:
-  AZURE_FUNCTIONAPP_NAME: 'resume-counter-c0excbeyddbdg6ac'
+  AZURE_FUNCTIONAPP_NAME: 'resume-counter'
   AZURE_FUNCTIONAPP_PACKAGE_PATH: 'backend/api'
   NODE_VERSION: '20.x'
 
