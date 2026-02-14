@@ -64,6 +64,7 @@ class MockCosmosContainer {
     }
 
     // Helper to clear mock data
+    //
     _clear() {
         this.items.clear();
         this.counter = null;
