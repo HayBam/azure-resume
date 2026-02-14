@@ -1,18 +1,50 @@
-name: Deploy Azure Function
+name: CI/CD for Azure Function
 
 on:
   push:
     branches: [ main ]
     paths:
       - 'backend/api/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'backend/api/**'
 
 env:
-  AZURE_FUNCTIONAPP_NAME: 'resume-counter'
+  AZURE_FUNCTIONAPP_NAME: 'resume-counter-c0excbeyddbdg6ac'
   AZURE_FUNCTIONAPP_PACKAGE_PATH: 'backend/api'
   NODE_VERSION: '20.x'
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend/api
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        cache-dependency-path: './backend/api/package-lock.json'
+
+    - name: Install dependencies
+      run: |
+        npm install
+        npm install --save-dev jest
+
+    - name: Run tests
+      run: npx jest test/unit/simple.test.js
+      continue-on-error: false
+
   deploy:
+    needs: test
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -52,9 +84,9 @@ jobs:
           -d '{"test":"deployment"}')
         
         if echo "$RESPONSE" | grep -q "success"; then
-          echo "Deployment successful!"
+          echo "✅ Deployment successful!"
         else
-          echo "Deployment verification failed"
+          echo "❌ Deployment verification failed"
           echo "Response: $RESPONSE"
           exit 1
         fi
