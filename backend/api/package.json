@@ -1,10 +1,32 @@
-{
+﻿{
     "name": "azure-resume-counter",
     "version": "1.0.0",
     "description": "Azure Function to count resume visits",
     "scripts": {
         "start": "func start",
-        "test": "echo \"No tests specified\" && exit 0"
+        "test": "jest",
+        "test:watch": "jest --watch",
+        "test:coverage": "jest --coverage",
+        "pretest": "cross-env NODE_ENV=test"
+    },
+    "jest": {
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": ["./test/jest.setup.js"],
+    "coveragePathIgnorePatterns": ["/node_modules/", "/test/"],
+    "testMatch": ["**/test/unit/**/*.test.js"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/index.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 70,
+        "functions": 70,
+        "lines": 70,
+        "statements": 70
+        }
+    }
     },
     "dependencies": {
         "@azure/cosmos": "^3.17.3",
