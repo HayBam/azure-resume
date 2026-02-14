@@ -1,0 +1,117 @@
+name: CI/CD for Azure Function
+
+on:
+  push:
+    branches: [ main ]  # Only deploy from main branch
+    paths:
+      - 'backend/api/**'
+  pull_request:
+    branches: [ main ]  # Test PRs but don't deploy
+    paths:
+      - 'backend/api/**'
+
+env:
+  AZURE_FUNCTIONAPP_NAME: 'resume-counter'  # Your production function app name
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: 'backend/api'
+  NODE_VERSION: '20.x'
+
+jobs:
+  # Job 1: Test only (runs on all PRs and pushes)
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend/api
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        cache-dependency-path: './backend/api/package-lock.json'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run unit tests
+      run: npm test
+
+    - name: Run tests with coverage
+      run: npm run test:coverage
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        directory: ./backend/api/coverage
+        flags: unittests
+      continue-on-error: true  # Don't fail if codecov fails
+
+  # Job 2: Deploy to Production (only on main branch pushes)
+  deploy:
+    needs: test  # Only deploy if tests pass
+    if: github.ref == 'refs/heads/main'  # Only on main branch
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./backend/api
+    
+    environment:
+      name: production
+      url: https://${{ env.AZURE_FUNCTIONAPP_NAME }}.azurewebsites.net
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+        cache-dependency-path: './backend/api/package-lock.json'
+
+    - name: Install production dependencies only
+      run: npm ci --production
+
+    - name: Run security audit
+      run: npm audit --production
+
+    - name: Deploy to Production
+      uses: Azure/functions-action@v1
+      id: deploy-prod
+      with:
+        app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
+        package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+        publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
+
+    - name: Wait for deployment
+      run: sleep 30
+
+    - name: Smoke Test - Verify deployment
+      run: |
+        echo "Testing deployed function..."
+        RESPONSE=$(curl -s -X POST https://${{ env.AZURE_FUNCTIONAPP_NAME }}.azurewebsites.net/api/counter \
+          -H "Content-Type: application/json" \
+          -d '{"test":"deployment"}')
+        
+        if echo "$RESPONSE" | grep -q "success"; then
+          echo "Deployment successful!"
+          echo "Response: $RESPONSE"
+        else
+          echo "Deployment verification failed"
+          echo "Response: $RESPONSE"
+          exit 1
+        fi
+
+    - name: Notify success
+      if: success()
+      run: echo "Function deployed and verified!"
+
+    - name: Notify failure
+      if: failure()
+      run: echo "Deployment failed - check logs"
