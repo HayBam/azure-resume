@@ -1,4 +1,4 @@
-// test/helpers/cosmos-mock.js
+// test/helpers/cosmos-mock.js - FIXED VERSION
 class MockCosmosContainer {
     constructor() {
         this.items = new Map();
@@ -30,19 +30,18 @@ class MockCosmosContainer {
         };
     }
 
-    async items = {
-        create: async (newItem) => {
-            this.items.set(newItem.id, newItem);
-            return { 
-                resource: newItem,
-                statusCode: 201 
-            };
-        }
-    };
+    // FIX: Change from "async items = {" to a regular method
+    async createItem(newItem) {
+        this.items.set(newItem.id, newItem);
+        return { 
+            resource: newItem,
+            statusCode: 201 
+        };
+    }
 
     async query(querySpec) {
         // Mock query for count
-        if (querySpec.query.includes('COUNT')) {
+        if (querySpec && querySpec.query && querySpec.query.includes('COUNT')) {
             return {
                 fetchAll: async () => ({
                     resources: [this.items.size]
