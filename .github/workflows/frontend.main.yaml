@@ -5,8 +5,7 @@ on:
     push:
         branches: [ main ]
         paths:
-        - 'Frontend/**'
-        - 'Frontend/*'        
+        - 'Frontend/**' 
         - '!**.md'  
 
 permissions:
@@ -25,8 +24,49 @@ jobs:
     - name: Upload to blob storage
       uses: azure/CLI@v1
       with:
+        azcliversion: latest
         inlineScript: |
-            az storage blob upload-batch --account-name webfilesazureresume985 --auth-mode key -d '$web' -s Frontend/
+          echo "📦 Uploading frontend files to Azure Storage..."
+          
+          # Upload with overwrite flag
+          az storage blob upload-batch \
+            --account-name webfilesazureresume985 \
+            --auth-mode key \
+            --destination '$web' \
+            --source frontend/ \
+            --overwrite \
+            --only-show-errors
+          
+          if [ $? -eq 0 ]; then
+            echo "Upload successful!"
+          else
+            echo "Upload failed"
+            exit 1
+          fi
+    - name: Verify upload
+      run: |
+          echo "Verifying files in Azure Storage..."
+          az storage blob list \
+            --account-name webfilesazureresume985 \
+            --container-name '$web' \
+            --output table \
+            --auth-mode key \
+            --query "[].{Name:name, LastModified:properties.lastModified}"
+
+    - name: Purge Cloudflare Cache 
+      env:
+        CLOUDFLARE_ZONE_ID: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+        CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      if: env.CLOUDFLARE_ZONE_ID != ''
+      run: |
+        echo "Purging Cloudflare cache for $CLOUDFLARE_ZONE_ID..."
+        curl -X POST "https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/purge_cache" \
+          -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+          -H "Content-Type: application/json" \
+          --data '{"purge_everything":true}'
+          --fail --silent --show-error
+          echo "Cloudflare cache purged successfully!"
+
     # - name: Purge CDN endpoint
       # uses: azure/CLI@v1
       # with:
