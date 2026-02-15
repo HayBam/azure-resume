@@ -26,14 +26,14 @@ jobs:
       with:
         azcliversion: latest
         inlineScript: |
-          echo "📦 Uploading frontend files to Azure Storage..."
+          echo "Uploading frontend files to Azure Storage..."
           
           # Upload with overwrite flag
           az storage blob upload-batch \
             --account-name webfilesazureresume985 \
             --auth-mode key \
             --destination '$web' \
-            --source frontend/ \
+            --source Frontend/ \
             --overwrite \
             --only-show-errors
           
