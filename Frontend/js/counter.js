@@ -27,8 +27,12 @@ init() {
             el.classList.add('loading');
         });
 
-        // Always update counter on page load
-        this.updateCounter();
+        // Only increment once per session; subsequent page loads display cached data
+        if (sessionStorage.getItem('counterIncremented')) {
+            this.displayCachedData();
+        } else {
+            this.updateCounter();
+        }
     }
 
     async updateCounter() {
@@ -57,6 +61,9 @@ init() {
             console.log('Counter response:', data);
 
             if (data.success) {
+                // Mark session so we don't increment again on page navigation
+                sessionStorage.setItem('counterIncremented', 'true');
+
                 // Store data locally for fallback display
                 localStorage.setItem('lastCounterData', JSON.stringify({
                     count: data.count,
