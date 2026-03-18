@@ -1,0 +1,81 @@
+export const resumeData = {
+  experience: [
+    {
+      company: 'Municipal Property Assessment Corporation (MPAC)',
+      role: 'Technical Infrastructure Analyst',
+      period: '2025 - Present',
+      location: 'Pickering, ON',
+      highlights: [
+        'Architected and managed production Kubernetes clusters on Azure AKS serving 50+ microservices',
+        'Designed CI/CD pipelines using GitHub Actions reducing deployment time by 70%',
+        'Implemented Infrastructure as Code with Terraform managing 200+ Azure resources',
+        'Led migration from on-premises to Azure cloud, achieving 99.9% uptime SLA',
+        'Established observability stack with Prometheus, Grafana, and Loki for full-stack monitoring',
+      ],
+    },
+    {
+      company: 'Pace Technical',
+      role: 'Cloud/Systems Administrator',
+      period: '2023 - 2025',
+      location: 'Markham, ON',
+      highlights: [
+        'Managed containerized workloads on Docker and Kubernetes across multiple environments',
+        'Automated infrastructure provisioning with Terraform and Ansible',
+        'Implemented GitOps workflows with ArgoCD for continuous deployment',
+        'Configured network infrastructure including VPNs, firewalls, and load balancers',
+        'Reduced infrastructure costs by 40% through resource optimization and auto-scaling',
+      ],
+    },
+    {
+      company: 'Jumia',
+      role: 'Systems Administrator',
+      period: '2014 - 2022',
+      location: 'Markham, ON',
+      highlights: [
+        'Administered Linux and Windows server environments',
+        'Managed Cisco network infrastructure including routers, switches, and firewalls',
+        'Implemented monitoring solutions with Nagios and Zabbix',
+        'Automated routine tasks using Bash and Python scripting',
+        'Provided L2/L3 support for production systems',
+      ],
+    },
+  ],
+  certifications: [
+    { name: 'Certified Kubernetes Administrator (CKA)', issuer: 'CNCF', year: '2025', icon: 'kubernetes' },
+    { name: 'Microsoft Certified: Azure Solutions Architect Expert', issuer: 'Microsoft', year: '2023', icon: 'azure' },
+    { name: 'Microsoft Certified: Azure Administrator Associate', issuer: 'Microsoft', year: '2023', icon: 'azure' },
+    { name: 'HashiCorp Certified: Terraform Associate', issuer: 'HashiCorp', year: '2022', icon: 'terraform' },
+    { name: 'Cisco Certified Network Associate (CCNA)', issuer: 'Cisco', year: '2021', icon: 'cisco' },
+    { name: 'Kubernetes and Cloud Native Associate (KCNA)', issuer: 'CNCF', year: '2025', icon: 'kubernetes' },
+  ],
+  skills: {
+    'Containers & Orchestration': ['Kubernetes', 'Docker', 'Helm', 'ArgoCD'],
+    'Cloud Platforms': ['Azure', 'AWS', 'GCP'],
+    'Infrastructure as Code': ['Terraform', 'Ansible', 'Pulumi', 'ARM Templates', 'Bicep'],
+    'CI/CD': ['GitHub Actions', 'Azure DevOps', 'Jenkins', 'GitLab CI'],
+    'Monitoring & Observability': ['Prometheus', 'Grafana', 'Loki', 'Jaeger', 'Azure Monitor'],
+    'Networking': ['Cisco IOS', 'VPN', 'DNS', 'Load Balancers', 'Firewalls', 'TCP/IP'],
+    'Scripting & Languages': ['Bash', 'Python', 'PowerShell', 'YAML', 'HCL'],
+    'Security': ['Trivy', 'OPA', 'Falco', 'Vault', 'Azure Key Vault'],
+  },
+  education: [
+    {
+      institution: 'Centennial College',
+      degree: 'Computer Systems Technology (Honors)',
+      period: '2023 – 2024',
+      location: 'Ontario, Canada',
+    },
+    {
+      institution: 'University of Ibadan',
+      degree: 'Master of Science in Computer Science',
+      period: '2017 – 2019',
+      location: 'Ibadan, Nigeria',
+    },
+    {
+      institution: 'Bowen University',
+      degree: 'Bachelor of Science in Computer Science',
+      period: '2008 – 2012',
+      location: 'Iwo, Nigeria',
+    },
+  ],
+}

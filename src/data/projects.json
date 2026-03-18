@@ -1,0 +1,62 @@
+[
+  {
+    "id": "k8s-cluster",
+    "title": "Production Kubernetes Cluster on Azure AKS",
+    "shortDescription": "Designed and deployed a production-grade Kubernetes cluster on Azure AKS with automated scaling, RBAC, and network policies.",
+    "detailedDescription": "Built a multi-node AKS cluster using Infrastructure as Code principles. Implemented Horizontal Pod Autoscaler (HPA) and Cluster Autoscaler for dynamic scaling. Configured network policies with Calico for microsegmentation, set up RBAC with Azure AD integration, and deployed Ingress controllers with TLS termination. Implemented GitOps with ArgoCD for continuous deployment.",
+    "architectureDiagram": "/images/k8s-architecture.png",
+    "documentation": "The cluster follows a multi-tier architecture with separate namespaces for each environment. Monitoring is handled by Prometheus and Grafana, with alerts routed through Alertmanager to PagerDuty. Logs are aggregated using Fluentd and forwarded to Azure Monitor.",
+    "githubUrl": "https://github.com/yourusername/aks-production-cluster",
+    "technologies": ["Kubernetes", "Azure AKS", "Terraform", "Helm", "ArgoCD", "Calico", "Prometheus"]
+  },
+  {
+    "id": "cicd-pipeline",
+    "title": "CI/CD Pipeline with GitHub Actions",
+    "shortDescription": "End-to-end CI/CD pipeline automating build, test, security scanning, and deployment across multiple environments.",
+    "detailedDescription": "Designed a comprehensive CI/CD pipeline using GitHub Actions with multi-stage workflows. Includes automated unit testing, integration testing, container image building with Docker, security scanning with Trivy and Snyk, infrastructure validation with Terraform plan, and blue-green deployments to Azure. Implements branch protection, required reviews, and automated rollback capabilities.",
+    "architectureDiagram": "/images/cicd-architecture.png",
+    "documentation": "The pipeline follows trunk-based development. Feature branches trigger PR builds with automated testing. Merges to main trigger staging deployments. Production releases are triggered by tags and include canary analysis before full rollout.",
+    "githubUrl": "https://github.com/yourusername/cicd-github-actions",
+    "technologies": ["GitHub Actions", "Docker", "Trivy", "Snyk", "Azure", "Terraform", "Bash"]
+  },
+  {
+    "id": "iac-terraform",
+    "title": "Infrastructure as Code with Terraform",
+    "shortDescription": "Complete Azure infrastructure managed with Terraform modules, remote state, and automated drift detection.",
+    "detailedDescription": "Developed reusable Terraform modules for provisioning Azure infrastructure including Virtual Networks, AKS clusters, Azure SQL databases, Key Vaults, and Application Gateways. Implemented remote state management with Azure Storage backend, state locking, and workspace-based environment separation. Automated drift detection runs daily via scheduled pipelines.",
+    "architectureDiagram": "/images/terraform-architecture.png",
+    "documentation": "Infrastructure is organized into layered modules: networking, compute, data, and security. Each module is versioned independently and published to a private Terraform registry. Changes are applied through a PR-based workflow with mandatory plan review.",
+    "githubUrl": "https://github.com/yourusername/terraform-azure-infrastructure",
+    "technologies": ["Terraform", "Azure", "HCL", "Azure DevOps", "Python", "Terragrunt"]
+  },
+  {
+    "id": "monitoring-stack",
+    "title": "Observability Stack with Prometheus & Grafana",
+    "shortDescription": "Full observability platform with metrics, logging, tracing, and alerting for microservices architecture.",
+    "detailedDescription": "Deployed a comprehensive observability stack using Prometheus for metrics collection, Grafana for visualization, Loki for log aggregation, and Jaeger for distributed tracing. Implemented custom Prometheus exporters for business metrics, created Grafana dashboards for SLI/SLO tracking, and configured multi-channel alerting through Alertmanager with PagerDuty and Slack integrations.",
+    "architectureDiagram": "/images/monitoring-architecture.png",
+    "documentation": "The observability stack follows the three pillars approach: metrics (Prometheus), logs (Loki), and traces (Jaeger). All components are deployed on Kubernetes using Helm charts. Data retention policies and storage optimization ensure cost-effective long-term storage.",
+    "githubUrl": "https://github.com/yourusername/observability-stack",
+    "technologies": ["Prometheus", "Grafana", "Loki", "Jaeger", "Alertmanager", "Kubernetes", "Helm"]
+  },
+  {
+    "id": "azure-cloud-infra",
+    "title": "Azure Cloud Infrastructure Deployment",
+    "shortDescription": "Enterprise-grade Azure landing zone with hub-spoke network topology, security controls, and governance policies.",
+    "detailedDescription": "Architected and deployed an Azure landing zone following the Cloud Adoption Framework. Implemented hub-spoke network topology with Azure Firewall, configured Azure Policy for governance and compliance, set up Azure Monitor and Log Analytics for centralized monitoring, and deployed Azure Key Vault for secrets management. Includes disaster recovery with Azure Site Recovery and backup policies.",
+    "architectureDiagram": "/images/azure-architecture.png",
+    "documentation": "The landing zone follows Microsoft's Cloud Adoption Framework with customizations for the organization's compliance requirements. Network segmentation uses NSGs and Azure Firewall rules. Identity management is centralized through Azure AD with Conditional Access policies.",
+    "githubUrl": "https://github.com/yourusername/azure-landing-zone",
+    "technologies": ["Azure", "Terraform", "Azure Policy", "Azure Firewall", "Azure AD", "Log Analytics"]
+  },
+  {
+    "id": "container-security",
+    "title": "Container Security Pipeline",
+    "shortDescription": "Automated container security scanning and policy enforcement across the container lifecycle.",
+    "detailedDescription": "Built an automated container security pipeline that scans images at build time, enforces admission policies at deploy time, and monitors for vulnerabilities at runtime. Integrates Trivy for image scanning, OPA Gatekeeper for Kubernetes admission control, and Falco for runtime security monitoring. Includes automated remediation workflows for critical vulnerabilities.",
+    "architectureDiagram": "/images/security-architecture.png",
+    "documentation": "Security is enforced at every stage: Dockerfiles are linted with hadolint, images are scanned with Trivy, Kubernetes manifests are validated with OPA policies, and runtime behavior is monitored with Falco. Findings are aggregated in a security dashboard.",
+    "githubUrl": "https://github.com/yourusername/container-security-pipeline",
+    "technologies": ["Trivy", "OPA Gatekeeper", "Falco", "Docker", "Kubernetes", "GitHub Actions", "Python"]
+  }
+]
