@@ -1,16 +1,6 @@
-// test/jest.setup.js
-jest.setTimeout(30000); // 30 second timeout
+jest.setTimeout(10000);
 
-// Mock console methods to reduce noise during tests
-global.console = {
-    ...console,
-    log: jest.fn(),
-    info: jest.fn(),
-    warn: jest.fn(),
-    error: jest.fn(),
-};
-
-// Clean up after each test
-afterEach(() => {
-    jest.clearAllMocks();
-});
+// Set test environment variables
+process.env.COSMOS_CONNECTION_STRING = 'AccountEndpoint=https://test.documents.azure.com:443/;AccountKey=dGVzdGtleQ==;';
+process.env.COSMOS_DATABASE_NAME = 'testdb';
+process.env.COSMOS_CONTAINER_NAME = 'testcontainer';
