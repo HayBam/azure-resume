@@ -59,9 +59,9 @@ jobs:
       run: |
         echo "Testing deployed function..."
         sleep 15
-        RESPONSE=$(curl -s -X POST https://${{ env.AZURE_FUNCTIONAPP_NAME }}.azurewebsites.net/api/counter \
-          -H "Content-Type: application/json" \
-          -d '{"test":"deployment"}')
+        RESPONSE=$(curl -s -X GET https://${{ env.AZURE_FUNCTIONAPP_NAME }}.azurewebsites.net/api/counter \
+          -H "Origin: https://odunlamiayobami.com" \
+          -H "Content-Type: application/json")
         
         if echo "$RESPONSE" | grep -q "success"; then
           echo "Deployment successful!"
