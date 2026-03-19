@@ -25,7 +25,7 @@ async function updateCounterHandler(request, context) {
         };
     }
 
-    // Only allow requests from the allowed domains
+    // Only allow requests from the allowed domain
     const isAllowed = (origin && allowedOrigins.includes(origin)) ||
         (referer && allowedOrigins.some(o => referer.startsWith(o)));
 
