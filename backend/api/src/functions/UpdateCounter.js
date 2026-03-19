@@ -4,16 +4,20 @@ const { CosmosClient } = require('@azure/cosmos');
 async function updateCounterHandler(request, context) {
     context.log('UpdateCounter function triggered');
 
-    const allowedOrigin = 'https://odunlamiayobami.com';
+    const allowedOrigins = [
+        'https://odunlamiayobami.com',
+        'https://www.odunlamiayobami.com'
+    ];
     const origin = request.headers.get('origin');
     const referer = request.headers.get('referer');
+    const matchedOrigin = allowedOrigins.find(o => o === origin) || allowedOrigins[0];
 
     // Handle CORS preflight
     if (request.method === 'OPTIONS') {
         return {
             status: 200,
             headers: {
-                'Access-Control-Allow-Origin': allowedOrigin,
+                'Access-Control-Allow-Origin': matchedOrigin,
                 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
                 'Access-Control-Allow-Headers': 'Content-Type',
             },
@@ -21,9 +25,9 @@ async function updateCounterHandler(request, context) {
         };
     }
 
-    // Only allow requests from the allowed domain
-    const isAllowed = (origin && origin === allowedOrigin) ||
-        (referer && referer.startsWith(allowedOrigin));
+    // Only allow requests from the allowed domains
+    const isAllowed = (origin && allowedOrigins.includes(origin)) ||
+        (referer && allowedOrigins.some(o => referer.startsWith(o)));
 
     if (!isAllowed) {
         return {
@@ -111,7 +115,7 @@ async function updateCounterHandler(request, context) {
             return {
                 status: 200,
                 headers: {
-                    'Access-Control-Allow-Origin': 'https://odunlamiayobami.com',
+                    'Access-Control-Allow-Origin': matchedOrigin,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
@@ -146,7 +150,7 @@ async function updateCounterHandler(request, context) {
         return {
             status: 500,
             headers: {
-                'Access-Control-Allow-Origin': 'https://odunlamiayobami.com',
+                'Access-Control-Allow-Origin': matchedOrigin,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
