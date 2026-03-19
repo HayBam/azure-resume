@@ -47,10 +47,11 @@ jobs:
       working-directory: ./backend/api
 
     - name: Deploy to Azure Function App
-      uses: Azure/functions-action@v2
+      uses: Azure/functions-action@v1
       with:
         app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
         package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+        respect-pom-xml: false
         scm-do-build-during-deployment: false
         enable-oryx-build: false
 
