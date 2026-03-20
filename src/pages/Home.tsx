@@ -51,15 +51,15 @@ export default function Home() {
               </div>
             </div>
 
-            <h1 className="animate-fade-in-up animation-delay-100 text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight">
+            <h1 className="animate-fade-in-up animation-delay-100 text-4xl sm:text-5xl lg:text-6xl font-bold text-theme-primary mb-4 tracking-tight">
               Hi, I'm <span className="gradient-text">{config.name}</span>
             </h1>
 
-            <p className="animate-fade-in-up animation-delay-200 text-xl sm:text-2xl text-gray-400 font-medium mb-6">
+            <p className="animate-fade-in-up animation-delay-200 text-xl sm:text-2xl text-theme-secondary font-medium mb-6">
               {config.title}
             </p>
 
-            <p className="animate-fade-in-up animation-delay-300 max-w-2xl mx-auto text-gray-400 leading-relaxed mb-8">
+            <p className="animate-fade-in-up animation-delay-300 max-w-2xl mx-auto text-theme-secondary leading-relaxed mb-8">
               I design and build reliable, scalable cloud infrastructure. Specializing in Kubernetes orchestration,
               Infrastructure as Code, and CI/CD automation. Passionate about DevOps culture, site reliability,
               and bridging the gap between development and operations.
@@ -75,7 +75,7 @@ export default function Home() {
               </Link>
               <Link
                 to="/resume"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-gray-700 hover:border-gray-600 text-gray-300 hover:text-white font-medium transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-theme text-theme-secondary hover:text-theme-primary font-medium transition-colors"
               >
                 View Resume
               </Link>
@@ -84,7 +84,7 @@ export default function Home() {
                   href={config.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-lg border border-gray-700 hover:border-gray-600 text-gray-400 hover:text-white transition-colors"
+                  className="p-2.5 rounded-lg border border-theme text-theme-secondary hover:text-theme-primary transition-colors"
                   aria-label="GitHub"
                 >
                   <Github className="w-5 h-5" />
@@ -93,7 +93,7 @@ export default function Home() {
                   href={config.linkedinUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-lg border border-gray-700 hover:border-gray-600 text-gray-400 hover:text-white transition-colors"
+                  className="p-2.5 rounded-lg border border-theme text-theme-secondary hover:text-theme-primary transition-colors"
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="w-5 h-5" />
@@ -119,12 +119,12 @@ export default function Home() {
               return (
                 <div
                   key={tech.name}
-                  className={`animate-fade-in-up opacity-0 animation-delay-${(i % 6 + 1) * 100} group flex items-center gap-4 p-4 rounded-xl bg-gray-900/50 border border-gray-800/50 hover:border-primary-500/30 transition-all`}
+                  className={`animate-fade-in-up opacity-0 animation-delay-${(i % 6 + 1) * 100} group flex items-center gap-4 p-4 rounded-xl bg-theme-surface border border-theme hover:border-primary-500/30 transition-all duration-300`}
                 >
                   <div className="w-10 h-10 rounded-lg bg-primary-600/10 flex items-center justify-center group-hover:bg-primary-600/20 transition-colors">
                     <Icon className="w-5 h-5 text-primary-400" />
                   </div>
-                  <span className="text-gray-300 font-medium">{tech.name}</span>
+                  <span className="text-theme-secondary font-medium">{tech.name}</span>
                 </div>
               )
             })}
@@ -139,7 +139,7 @@ export default function Home() {
       </section>
 
       {/* Certifications */}
-      <section className="py-16 sm:py-20 bg-gray-900/30">
+      <section className="py-16 sm:py-20 bg-theme-alt">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading title="Certifications" subtitle="Industry-recognized certifications validating expertise" />
 
@@ -147,13 +147,13 @@ export default function Home() {
             {certifications.map((cert) => (
               <div
                 key={cert.name}
-                className="group relative p-5 rounded-xl bg-gray-900/50 border border-gray-800/50 hover:border-gray-700 card-hover text-center"
+                className="group relative p-5 rounded-xl bg-theme-surface border border-theme hover:border-primary-500/30 card-hover text-center transition-colors duration-300"
               >
                 <div className={`w-14 h-14 mx-auto mb-3 rounded-xl bg-gradient-to-br ${cert.color} flex items-center justify-center`}>
                   <Shield className="w-7 h-7 text-white" />
                 </div>
-                <h3 className="text-white font-semibold text-lg mb-1">{cert.name}</h3>
-                <p className="text-gray-400 text-sm">{cert.fullName}</p>
+                <h3 className="text-theme-primary font-semibold text-lg mb-1">{cert.name}</h3>
+                <p className="text-theme-secondary text-sm">{cert.fullName}</p>
               </div>
             ))}
           </div>
@@ -196,13 +196,13 @@ export default function Home() {
               return (
                 <div
                   key={item.title}
-                  className="p-6 rounded-xl bg-gray-900/50 border border-gray-800/50 hover:border-primary-500/20 transition-colors"
+                  className="p-6 rounded-xl bg-theme-surface border border-theme hover:border-primary-500/20 transition-colors duration-300"
                 >
                   <div className="w-12 h-12 rounded-xl bg-primary-600/10 flex items-center justify-center mb-4">
                     <Icon className="w-6 h-6 text-primary-400" />
                   </div>
-                  <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
-                  <p className="text-gray-400 text-sm mb-4 leading-relaxed">{item.desc}</p>
+                  <h3 className="text-lg font-semibold text-theme-primary mb-2">{item.title}</h3>
+                  <p className="text-theme-secondary text-sm mb-4 leading-relaxed">{item.desc}</p>
                   <div className="flex flex-wrap gap-2">
                     {item.items.map((tag) => (
                       <TechBadge key={tag} name={tag} />
@@ -216,10 +216,10 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 sm:py-20 bg-gray-900/30">
+      <section className="py-16 sm:py-20 bg-theme-alt">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">Interested in working together?</h2>
-          <p className="text-gray-400 mb-8">
+          <h2 className="text-3xl font-bold text-theme-primary mb-4">Interested in working together?</h2>
+          <p className="text-theme-secondary mb-8">
             Check out my projects to see my work in action, or download my resume for a detailed overview of my experience.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
@@ -232,7 +232,7 @@ export default function Home() {
             </Link>
             <a
               href={`mailto:${config.email}`}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-gray-700 hover:border-gray-600 text-gray-300 hover:text-white font-medium transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-theme text-theme-secondary hover:text-theme-primary font-medium transition-colors"
             >
               Get in Touch
             </a>

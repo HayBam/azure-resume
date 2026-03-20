@@ -8,7 +8,7 @@ import ProjectDetail from './pages/ProjectDetail'
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col bg-gray-950 bg-grid">
+    <div className="min-h-screen flex flex-col bg-theme bg-grid transition-colors duration-300">
       <Navbar />
       <main className="flex-1">
         <Routes>

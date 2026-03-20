@@ -21,16 +21,16 @@ export default function VisitorCounter() {
   }, [])
 
   return (
-    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-800/60 border border-gray-700/50 text-sm">
+    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-theme-surface-solid border border-theme text-sm transition-colors duration-300">
       <Eye className="w-4 h-4 text-primary-400" />
-      <span className="text-gray-400">
+      <span className="text-theme-secondary">
         {error ? (
           'Visitor counter unavailable'
         ) : count === null ? (
-          <span className="inline-block w-8 h-4 bg-gray-700 rounded animate-pulse" />
+          <span className="inline-block w-8 h-4 bg-theme-badge rounded animate-pulse" />
         ) : (
           <>
-            <span className="font-mono font-semibold text-white">{count.toLocaleString()}</span>
+            <span className="font-mono font-semibold text-theme-primary">{count.toLocaleString()}</span>
             {' '}visits
           </>
         )}
