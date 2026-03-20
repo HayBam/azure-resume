@@ -1,5 +1,15 @@
 [
   {
+    "id": "azure-resume",
+    "title": "DevOps Portfolio Website",
+    "shortDescription": "Full-stack cloud resume website with a React frontend hosted on Azure Blob Storage, a serverless visitor counter API, and CI/CD pipelines with GitHub Actions.",
+    "detailedDescription": "Built a cloud-native portfolio website. The frontend is a React + TypeScript application styled with Tailwind CSS and bundled with Vite, hosted as a static website on Azure Blob Storage behind Cloudflare CDN. The backend is a serverless Azure Function (Node.js) that tracks visitor counts in Azure Cosmos DB. Both frontend and backend are automatically built and deployed via GitHub Actions CI/CD pipelines on every push to main.",
+    "architectureDiagram": "/images/azure-resume-architecture.png",
+    "documentation": "The frontend uses React Router with HashRouter for client-side navigation across Home, Projects, Resume, and Project Detail pages. The visitor counter API validates CORS origins, increments a counter document in Cosmos DB, and returns the updated count. The frontend workflow builds with Vite, uploads the dist/ folder to the $web container in Azure Storage, and optionally purges the Cloudflare cache. The backend workflow deploys the Azure Function and verifies the deployment with a health check.",
+    "githubUrl": "https://github.com/HayBam/azure-resume",
+    "technologies": ["React", "TypeScript", "Tailwind CSS", "Vite", "Azure Functions", "Azure Cosmos DB", "Azure Blob Storage", "GitHub Actions", "Cloudflare", "Namecheap"]
+  },
+  {
     "id": "k8s-cluster",
     "title": "Production Kubernetes Cluster on Azure AKS",
     "shortDescription": "Designed and deployed a production-grade Kubernetes cluster on Azure AKS with automated scaling, RBAC, and network policies.",
