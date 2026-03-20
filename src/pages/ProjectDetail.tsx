@@ -82,12 +82,12 @@ export default function ProjectDetail() {
             </div>
             <h2 className="text-xl font-bold text-white">Architecture Diagram</h2>
           </div>
-          <div className="p-8 rounded-xl bg-gray-900/50 border border-gray-800/50 border-dashed flex flex-col items-center justify-center min-h-[300px]">
-            <Image className="w-16 h-16 text-gray-700 mb-4" />
-            <p className="text-gray-500 text-sm">Architecture diagram placeholder</p>
-            <p className="text-gray-600 text-xs mt-1">
-              Add image to: <code className="text-gray-500 bg-gray-800 px-2 py-0.5 rounded text-xs">{project.architectureDiagram}</code>
-            </p>
+          <div className="p-8 rounded-xl bg-gray-900/50 border border-gray-800/50 flex flex-col items-center justify-center min-h-[300px]">
+            <img
+              src={project.architectureDiagram}
+              alt={`${project.title} architecture diagram`}
+              className="w-full rounded-lg"
+            />
           </div>
         </section>
 
