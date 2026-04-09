@@ -10,14 +10,14 @@ function useCountUp(target: number | null, duration = 1500) {
     if (target === null || hasAnimated.current) return
     hasAnimated.current = true
 
-    const start = 0
+    const end = target
     const startTime = performance.now()
 
     function animate(now: number) {
       const elapsed = now - startTime
       const progress = Math.min(elapsed / duration, 1)
       const eased = 1 - Math.pow(1 - progress, 3)
-      setDisplay(Math.round(start + (target - start) * eased))
+      setDisplay(Math.round(end * eased))
 
       if (progress < 1) {
         requestAnimationFrame(animate)
