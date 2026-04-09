@@ -6,11 +6,11 @@ export const resumeData = {
       period: '2025 - Present',
       location: 'Pickering, ON',
       highlights: [
-        'Architected and managed production Kubernetes clusters on Azure AKS serving 50+ microservices',
-        'Designed CI/CD pipelines using GitHub Actions reducing deployment time by 70%',
-        'Implemented Infrastructure as Code with Terraform managing 200+ Azure resources',
-        'Led migration from on-premises to Azure cloud, achieving 99.9% uptime SLA',
-        'Established observability stack with Prometheus, Grafana, and Loki for full-stack monitoring',
+        'Developing and implementing PowerShell automation scripts for system monitoring and configuration management',
+        'Identifying recurring technical issues and performing root cause analysis to resolve problems',
+        'Supporting eneterprise infrastructure environment serving 1,700+ user, ensuring uprime, reliability and compliance with oraganizational security standards',
+        'Administering Microsoft 365 (SharePoint, Teams, OneDrive) and Active Directory, managing identity and access controls',
+        'Creating and maintaining operational support documentaion, runbooks and process workflows to standardize processes and improve team efficiency during incident response',
       ],
     },
     {
