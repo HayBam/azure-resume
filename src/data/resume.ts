@@ -8,7 +8,7 @@ export const resumeData = {
       highlights: [
         'Developing and implementing PowerShell automation scripts for system monitoring and configuration management',
         'Identifying recurring technical issues and performing root cause analysis to resolve problems',
-        'Supporting eneterprise infrastructure environment serving 1,700+ user, ensuring uprime, reliability and compliance with oraganizational security standards',
+        'Supporting eneterprise infrastructure environment serving 1,700+ user, ensuring uptime, reliability and compliance with oraganizational security standards',
         'Administering Microsoft 365 (SharePoint, Teams, OneDrive) and Active Directory, managing identity and access controls',
         'Creating and maintaining operational support documentaion, runbooks and process workflows to standardize processes and improve team efficiency during incident response',
       ],
