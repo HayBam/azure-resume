@@ -10,14 +10,14 @@
     "technologies": ["React", "TypeScript", "Tailwind CSS", "Vite", "Azure Functions", "Azure Cosmos DB", "Azure Blob Storage", "GitHub Actions", "Cloudflare", "Namecheap"]
   },
   {
-    "id": "k8s-cluster",
-    "title": "Production Kubernetes Cluster on Azure AKS",
-    "shortDescription": "Designed and deployed a production-grade Kubernetes cluster on Azure AKS with automated scaling, RBAC, and network policies.",
-    "detailedDescription": "Built a multi-node AKS cluster using Infrastructure as Code principles. Implemented Horizontal Pod Autoscaler (HPA) and Cluster Autoscaler for dynamic scaling. Configured network policies with Calico for microsegmentation, set up RBAC with Azure AD integration, and deployed Ingress controllers with TLS termination. Implemented GitOps with ArgoCD for continuous deployment.",
-    "architectureDiagram": "/images/k8s-architecture.png",
-    "documentation": "The cluster follows a multi-tier architecture with separate namespaces for each environment. Monitoring is handled by Prometheus and Grafana, with alerts routed through Alertmanager to PagerDuty. Logs are aggregated using Fluentd and forwarded to Azure Monitor.",
-    "githubUrl": "https://github.com/yourusername/aks-production-cluster",
-    "technologies": ["Kubernetes", "Azure AKS", "Terraform", "Helm", "ArgoCD", "Calico", "Prometheus"]
+    "id": "cicd-eks-pipeline",
+    "title": "CI/CD Pipeline for Containerized Apps on Amazon EKS",
+    "shortDescription": "End-to-end GitOps pipeline that builds, scans, and deploys containerized applications to Amazon EKS using GitLab CI/CD, Amazon ECR, and ArgoCD Image Updater.",
+    "detailedDescription": "Built an automated CI/CD pipeline where every push to main triggers a full workflow: Docker image build, Hadolint linting, Snyk security scanning, and push to Amazon ECR with a Git SHA-based tag. ArgoCD Image Updater polls ECR for new tags, commits the updated image reference back to the Helm chart in Git, and ArgoCD syncs the change to the EKS cluster — achieving fully automated, zero-touch GitOps delivery with rolling updates.",
+    "architectureDiagram": "/images/cicd-pipeline.png",
+    "documentation": "The pipeline runs five stages: platform_check (AWS CLI and kubectl connectivity verification), validate (Dockerfile linting with Hadolint), build_and_package (Docker build and ECR push tagged with CI_COMMIT_SHORT_SHA), scan (Snyk container vulnerability scanning), and deploy_dev (optional ArgoCD sync trigger). ArgoCD Image Updater uses a newest-build strategy filtered by a SHA regex to detect new images, then performs a Git write-back to update the Helm values.yaml. IRSA provides ECR read access to Image Updater, and a GitLab Project Access Token enables the Git write-back. The application is packaged as a Helm chart under charts/myapp with configurable image repository, tag, and resource settings.",
+    "githubUrl": "https://gitlab.com/haybam/devops-cicd-app",
+    "technologies": ["GitLab CI/CD", "Docker", "Amazon EKS", "Amazon ECR", "ArgoCD", "ArgoCD Image Updater", "Helm", "Snyk", "Hadolint", "AWS CLI", "IRSA"]
   },
   {
     "id": "cicd-pipeline",
