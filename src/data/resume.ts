@@ -2,15 +2,15 @@ export const resumeData = {
   experience: [
     {
       company: 'Municipal Property Assessment Corporation (MPAC)',
-      role: 'Technical Infrastructure Analyst',
+      role: 'Technical Infrastructure Cloud Analyst',
       period: '2025 - Present',
       location: 'Pickering, ON',
       highlights: [
-        'Developing and implementing PowerShell automation scripts for system monitoring and configuration management',
-        'Identifying recurring technical issues and performing root cause analysis to resolve problems',
-        'Supporting eneterprise infrastructure environment serving 1,700+ user, ensuring uptime, reliability and compliance with oraganizational security standards',
-        'Administering Microsoft 365 (SharePoint, Teams, OneDrive) and Active Directory, managing identity and access controls',
-        'Creating and maintaining operational support documentaion, runbooks and process workflows to standardize processes and improve team efficiency during incident response',
+        'Deploying and managing containerized applications on Kubernetes (AKS/EKS) across development, staging, and production environments',
+        'Building and maintaining CI/CD pipelines using GitLab CI and GitHub Actions for automated testing, building, and deployment of microservices',
+        'Implementing GitOps workflows with ArgoCD for declarative, version-controlled continuous delivery to Kubernetes clusters',
+        'Provisioning and managing cloud infrastructure on Azure and AWS using Terraform and ARM templates',
+        'Monitoring cluster health and application performance using Prometheus, Grafana, and Azure Monitor to ensure SLA compliance',
       ],
     },
     {
@@ -62,20 +62,14 @@ export const resumeData = {
     {
       institution: 'Centennial College',
       degree: 'Computer Systems Technology (Honors)',
-      period: '2023 – 2024',
-      location: 'Ontario, Canada',
     },
     {
       institution: 'University of Ibadan',
       degree: 'Master of Science in Computer Science',
-      period: '2017 – 2019',
-      location: 'Ibadan, Nigeria',
     },
     {
       institution: 'Bowen University',
       degree: 'Bachelor of Science in Computer Science',
-      period: '2008 – 2012',
-      location: 'Iwo, Nigeria',
     },
   ],
 }

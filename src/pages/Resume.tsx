@@ -126,10 +126,6 @@ export default function Resume() {
                 <h3 className="text-theme-primary font-semibold">{edu.degree}</h3>
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm mt-1">
                   <span className="text-primary-400">{edu.institution}</span>
-                  <span className="text-theme-faint">|</span>
-                  <span className="text-theme-secondary">{edu.period}</span>
-                  <span className="text-theme-faint">|</span>
-                  <span className="text-theme-muted">{edu.location}</span>
                 </div>
               </div>
             ))}
