@@ -1,7 +1,7 @@
-import { useState, type FormEvent } from 'react'
+import { useState, useEffect, type FormEvent } from 'react'
 import { Send, CheckCircle, AlertCircle, Clock, Mail, User, MessageSquare, Type } from 'lucide-react'
 import SectionHeading from '../components/SectionHeading'
-import { submitContactForm } from '../services/contactForm'
+import { submitContactForm, loadRecaptchaScript } from '../services/contactForm'
 
 type FormStatus = 'idle' | 'sending' | 'success' | 'error' | 'rate-limited'
 
@@ -12,6 +12,10 @@ export default function Contact() {
   const [message, setMessage] = useState('')
   const [status, setStatus] = useState<FormStatus>('idle')
   const [errorMessage, setErrorMessage] = useState('')
+
+  useEffect(() => {
+    loadRecaptchaScript()
+  }, [])
 
   const canSubmit = name.trim() && email.trim() && subject.trim() && message.trim() && status !== 'sending'
 

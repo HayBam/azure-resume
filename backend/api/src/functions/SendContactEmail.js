@@ -27,6 +27,8 @@ function getClientIp(request) {
         || '0.0.0.0';
 }
 
+const RECAPTCHA_THRESHOLD = 0.5;
+
 function validateInput(body) {
     const { name, email, subject, message } = body;
 
@@ -41,6 +43,33 @@ function validateInput(body) {
         return 'Please provide a valid email address.';
     }
     return null;
+}
+
+async function verifyRecaptcha(token, context) {
+    const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+    if (!secretKey) {
+        throw new Error('RECAPTCHA_SECRET_KEY is not configured');
+    }
+
+    const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `secret=${encodeURIComponent(secretKey)}&response=${encodeURIComponent(token)}`
+    });
+
+    const result = await response.json();
+    context.log(`reCAPTCHA verification: success=${result.success}, score=${result.score}, action=${result.action}`);
+
+    if (!result.success) {
+        return { passed: false, reason: 'reCAPTCHA verification failed' };
+    }
+    if (result.action !== 'contact_submit') {
+        return { passed: false, reason: 'Invalid reCAPTCHA action' };
+    }
+    if (result.score < RECAPTCHA_THRESHOLD) {
+        return { passed: false, reason: `reCAPTCHA score too low (${result.score})` };
+    }
+    return { passed: true };
 }
 
 async function getCosmosContainer(context) {
@@ -174,7 +203,26 @@ async function sendContactEmailHandler(request, context) {
             };
         }
 
-        const { name, email, subject, message } = body;
+        const { name, email, subject, message, recaptchaToken } = body;
+
+        if (!recaptchaToken) {
+            return {
+                status: 400,
+                headers,
+                body: JSON.stringify({ error: 'reCAPTCHA verification is required.' })
+            };
+        }
+
+        const recaptchaResult = await verifyRecaptcha(recaptchaToken, context);
+        if (!recaptchaResult.passed) {
+            context.log(`reCAPTCHA rejected: ${recaptchaResult.reason}`);
+            return {
+                status: 403,
+                headers,
+                body: JSON.stringify({ error: 'reCAPTCHA verification failed. Please try again.' })
+            };
+        }
+
         const clientIp = getClientIp(request);
 
         const container = await getCosmosContainer(context);
