@@ -1,0 +1,262 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 850" font-family="Segoe UI, Inter, Arial, sans-serif">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0f1a"/>
+      <stop offset="100%" style="stop-color:#111827"/>
+    </linearGradient>
+    <linearGradient id="azureBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0078d4"/>
+      <stop offset="100%" style="stop-color:#005a9e"/>
+    </linearGradient>
+    <linearGradient id="cfOrange" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f6821f"/>
+      <stop offset="100%" style="stop-color:#d4710a"/>
+    </linearGradient>
+    <linearGradient id="ghGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ea44f"/>
+      <stop offset="100%" style="stop-color:#238636"/>
+    </linearGradient>
+    <linearGradient id="cosmosGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#742774"/>
+      <stop offset="100%" style="stop-color:#5b1d5b"/>
+    </linearGradient>
+    <linearGradient id="funcGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffb900"/>
+      <stop offset="100%" style="stop-color:#e0a300"/>
+    </linearGradient>
+    <linearGradient id="storageGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0078d4"/>
+      <stop offset="100%" style="stop-color:#106ebe"/>
+    </linearGradient>
+    <linearGradient id="ncGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#de5833"/>
+      <stop offset="100%" style="stop-color:#c44a28"/>
+    </linearGradient>
+
+    <!-- Shadow -->
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Arrow markers -->
+    <marker id="arrowBlue" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#0078d4"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#f6821f"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2ea44f"/>
+    </marker>
+    <marker id="arrowGray" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#64748b"/>
+    </marker>
+    <marker id="arrowYellow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#ffb900"/>
+    </marker>
+    <marker id="arrowPurple" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#742774"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="850" fill="url(#bg)"/>
+
+  <!-- Title Bar -->
+  <rect x="0" y="0" width="1200" height="56" fill="#111827" opacity="0.8"/>
+  <text x="600" y="28" text-anchor="middle" fill="#f8fafc" font-size="22" font-weight="700" dominant-baseline="central">Azure Cloud Resume — Architecture Diagram</text>
+  <line x1="50" y1="56" x2="1150" y2="56" stroke="#1e3a5f" stroke-width="1"/>
+
+  <!-- ==================== -->
+  <!-- USER LAYER            -->
+  <!-- ==================== -->
+  <text x="32" y="90" fill="#94a3b8" font-size="11" font-weight="600" letter-spacing="2">END USER</text>
+
+  <!-- User Icon Box -->
+  <rect x="500" y="75" width="200" height="65" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.5" filter="url(#shadow)"/>
+  <!-- Browser icon -->
+  <circle cx="540" cy="107" r="16" fill="none" stroke="#60a5fa" stroke-width="1.5"/>
+  <circle cx="540" cy="107" r="6" fill="#60a5fa"/>
+  <line x1="540" y1="91" x2="540" y2="123" stroke="#60a5fa" stroke-width="1"/>
+  <line x1="524" y1="107" x2="556" y2="107" stroke="#60a5fa" stroke-width="1"/>
+  <text x="570" y="103" fill="#f1f5f9" font-size="13" font-weight="600">Web Browser</text>
+  <text x="570" y="120" fill="#94a3b8" font-size="10">HTTPS Request</text>
+
+  <!-- ==================== -->
+  <!-- DNS / CDN LAYER       -->
+  <!-- ==================== -->
+  <text x="32" y="185" fill="#94a3b8" font-size="11" font-weight="600" letter-spacing="2">DNS / CDN LAYER</text>
+
+  <!-- Arrow: User to DNS -->
+  <line x1="540" y1="140" x2="540" y2="195" stroke="#64748b" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arrowGray)"/>
+  <text x="548" y="170" fill="#64748b" font-size="9">odunlamiayobami.com</text>
+
+  <!-- Namecheap -->
+  <rect x="80" y="195" width="200" height="65" rx="10" fill="url(#ncGrad)" filter="url(#shadow)"/>
+  <text x="180" y="222" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">Namecheap</text>
+  <text x="180" y="242" text-anchor="middle" fill="#fecaca" font-size="10">Domain Registrar</text>
+
+  <!-- Arrow: Namecheap to Cloudflare -->
+  <line x1="280" y1="228" x2="390" y2="228" stroke="#f6821f" stroke-width="1.5" marker-end="url(#arrowOrange)"/>
+  <text x="335" y="220" text-anchor="middle" fill="#f6821f" font-size="9">NS Records</text>
+
+  <!-- Cloudflare -->
+  <rect x="400" y="195" width="280" height="65" rx="10" fill="url(#cfOrange)" filter="url(#shadow)"/>
+  <text x="540" y="222" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">Cloudflare</text>
+  <text x="540" y="242" text-anchor="middle" fill="#fff3e0" font-size="10">DNS | SSL/TLS | CDN Caching | DDoS Protection</text>
+
+  <!-- ==================== -->
+  <!-- AZURE CLOUD BOUNDARY  -->
+  <!-- ==================== -->
+
+  <!-- Azure boundary box -->
+  <rect x="50" y="310" width="1100" height="310" rx="14" fill="none" stroke="#0078d4" stroke-width="1.5" stroke-dasharray="8,4" opacity="0.5"/>
+  <rect x="60" y="300" width="160" height="22" rx="4" fill="#0078d4"/>
+  <text x="140" y="315" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">Microsoft Azure Cloud</text>
+
+  <!-- Arrow: Cloudflare to Storage (static) -->
+  <path d="M 470 260 L 270 340" stroke="#0078d4" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <text x="340" y="292" fill="#0078d4" font-size="10" font-weight="600" transform="rotate(-18, 340, 292)">Static Content (HTML/CSS/JS)</text>
+
+  <!-- Arrow: Cloudflare to Functions (API) -->
+  <path d="M 610 260 L 810 340" stroke="#ffb900" stroke-width="2" marker-end="url(#arrowYellow)"/>
+  <text x="740" y="292" fill="#ffb900" font-size="10" font-weight="600" transform="rotate(18, 740, 292)">API: /api/counter</text>
+
+  <!-- ==================== -->
+  <!-- AZURE STORAGE         -->
+  <!-- ==================== -->
+
+  <!-- Storage Box -->
+  <rect x="90" y="340" width="340" height="110" rx="12" fill="#1e293b" stroke="#0078d4" stroke-width="1.5" filter="url(#shadow)"/>
+
+  <!-- Storage icon -->
+  <rect x="110" y="360" width="30" height="24" rx="3" fill="url(#storageGrad)"/>
+  <rect x="110" y="388" width="30" height="4" rx="1" fill="#0078d4" opacity="0.5"/>
+  <rect x="110" y="396" width="30" height="4" rx="1" fill="#0078d4" opacity="0.3"/>
+
+  <text x="150" y="375" fill="#f1f5f9" font-size="14" font-weight="700">Azure Blob Storage</text>
+  <text x="150" y="395" fill="#60a5fa" font-size="11">$web Container (Static Website)</text>
+
+  <!-- Files listed -->
+  <text x="115" y="425" fill="#94a3b8" font-size="10">index.html | assets/index.css | assets/index.js</text>
+  <text x="115" y="440" fill="#64748b" font-size="9">React SPA bundled by Vite</text>
+
+  <!-- ==================== -->
+  <!-- AZURE FUNCTIONS       -->
+  <!-- ==================== -->
+
+  <!-- Functions Box -->
+  <rect x="770" y="340" width="340" height="110" rx="12" fill="#1e293b" stroke="#ffb900" stroke-width="1.5" filter="url(#shadow)"/>
+
+  <!-- Function icon (lightning bolt style) -->
+  <rect x="790" y="360" width="30" height="30" rx="5" fill="url(#funcGrad)"/>
+  <text x="805" y="382" text-anchor="middle" fill="#1e293b" font-size="18" font-weight="700">f</text>
+
+  <text x="830" y="375" fill="#f1f5f9" font-size="14" font-weight="700">Azure Functions</text>
+  <text x="830" y="395" fill="#fbbf24" font-size="11">resume-counter (Node.js Runtime)</text>
+
+  <text x="795" y="425" fill="#94a3b8" font-size="10">HTTP Trigger: GET/POST /api/counter</text>
+  <text x="795" y="440" fill="#64748b" font-size="9">CORS Validation | Visitor Count Increment</text>
+
+  <!-- ==================== -->
+  <!-- COSMOS DB             -->
+  <!-- ==================== -->
+
+  <!-- Arrow: Functions to Cosmos -->
+  <line x1="940" y1="450" x2="940" y2="510" stroke="#742774" stroke-width="2" marker-end="url(#arrowPurple)"/>
+  <text x="950" y="485" fill="#c084fc" font-size="10" font-weight="600">Read/Write</text>
+
+  <!-- Cosmos DB Box -->
+  <rect x="770" y="515" width="340" height="90" rx="12" fill="#1e293b" stroke="#742774" stroke-width="1.5" filter="url(#shadow)"/>
+
+  <!-- Cosmos icon -->
+  <ellipse cx="805" cy="550" rx="15" ry="10" fill="none" stroke="#a855f7" stroke-width="1.5"/>
+  <ellipse cx="805" cy="555" rx="15" ry="10" fill="none" stroke="#a855f7" stroke-width="1" opacity="0.5"/>
+  <ellipse cx="805" cy="560" rx="15" ry="10" fill="none" stroke="#a855f7" stroke-width="0.8" opacity="0.3"/>
+
+  <text x="830" y="548" fill="#f1f5f9" font-size="14" font-weight="700">Azure Cosmos DB</text>
+  <text x="830" y="568" fill="#c084fc" font-size="11">NoSQL | Database: azureresume</text>
+  <text x="830" y="588" fill="#64748b" font-size="9">Container: counter | Partition Key: /id | Document: resumeCounter</text>
+
+  <!-- ==================== -->
+  <!-- CI/CD LAYER           -->
+  <!-- ==================== -->
+  <text x="32" y="665" fill="#94a3b8" font-size="11" font-weight="600" letter-spacing="2">CI/CD PIPELINE</text>
+
+  <!-- GitHub Repo -->
+  <rect x="80" y="680" width="220" height="80" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.5" filter="url(#shadow)"/>
+  <!-- GH icon circle -->
+  <circle cx="115" cy="710" r="14" fill="#f1f5f9"/>
+  <circle cx="115" cy="708" r="6" fill="#1e293b"/>
+  <text x="140" y="708" fill="#f1f5f9" font-size="13" font-weight="600">GitHub Repository</text>
+  <text x="140" y="726" fill="#94a3b8" font-size="10">HayBam/azure-resume</text>
+  <text x="140" y="742" fill="#64748b" font-size="9">Push to main branch</text>
+
+  <!-- Arrow: GitHub to Actions -->
+  <line x1="300" y1="720" x2="390" y2="720" stroke="#2ea44f" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+  <text x="345" y="712" text-anchor="middle" fill="#2ea44f" font-size="9">Triggers</text>
+
+  <!-- GitHub Actions Box -->
+  <rect x="400" y="675" width="380" height="90" rx="10" fill="#1e293b" stroke="#2ea44f" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="590" y="700" text-anchor="middle" fill="#f1f5f9" font-size="13" font-weight="700">GitHub Actions Workflows</text>
+
+  <!-- Frontend Pipeline -->
+  <rect x="415" y="710" width="170" height="40" rx="6" fill="url(#ghGrad)" opacity="0.9"/>
+  <text x="500" y="728" text-anchor="middle" fill="#fff" font-size="10" font-weight="600">Frontend Pipeline</text>
+  <text x="500" y="742" text-anchor="middle" fill="#d1fae5" font-size="8">npm ci → build → upload dist/</text>
+
+  <!-- Backend Pipeline -->
+  <rect x="595" y="710" width="170" height="40" rx="6" fill="url(#ghGrad)" opacity="0.9"/>
+  <text x="680" y="728" text-anchor="middle" fill="#fff" font-size="10" font-weight="600">Backend Pipeline</text>
+  <text x="680" y="742" text-anchor="middle" fill="#d1fae5" font-size="8">install → deploy → verify</text>
+
+  <!-- Deploy arrows from pipelines to Azure services -->
+  <!-- Frontend deploy arrow -->
+  <path d="M 500 710 Q 400 660 310 620" stroke="#2ea44f" stroke-width="1.5" stroke-dasharray="6,3" fill="none" marker-end="url(#arrowGreen)"/>
+  <text x="370" y="650" fill="#4ade80" font-size="9" transform="rotate(-30, 370, 650)">Deploy to Storage</text>
+
+  <!-- Backend deploy arrow -->
+  <path d="M 680 710 Q 800 660 900 620" stroke="#2ea44f" stroke-width="1.5" stroke-dasharray="6,3" fill="none" marker-end="url(#arrowGreen)"/>
+  <text x="820" y="650" fill="#4ade80" font-size="9" transform="rotate(25, 820, 650)">Deploy Function</text>
+
+  <!-- ==================== -->
+  <!-- RESPONSE FLOW         -->
+  <!-- ==================== -->
+
+  <!-- JSON Response arrow from Functions back -->
+  <rect x="510" y="385" width="220" height="30" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="620" y="405" text-anchor="middle" fill="#fbbf24" font-size="10" font-weight="500">{"success": true, "count": 402}</text>
+
+  <!-- Arrow from storage back to user area -->
+  <path d="M 260 340 Q 260 290 350 270" stroke="#60a5fa" stroke-width="1" stroke-dasharray="4,3" fill="none" opacity="0.5"/>
+
+  <!-- ==================== -->
+  <!-- LEGEND                -->
+  <!-- ==================== -->
+  <rect x="860" y="680" width="290" height="90" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+  <text x="880" y="702" fill="#f1f5f9" font-size="11" font-weight="700">Legend</text>
+
+  <line x1="880" y1="715" x2="910" y2="715" stroke="#0078d4" stroke-width="2"/>
+  <text x="918" y="719" fill="#94a3b8" font-size="9">Static content flow</text>
+
+  <line x1="880" y1="731" x2="910" y2="731" stroke="#ffb900" stroke-width="2"/>
+  <text x="918" y="735" fill="#94a3b8" font-size="9">API request flow</text>
+
+  <line x1="880" y1="747" x2="910" y2="747" stroke="#2ea44f" stroke-width="2" stroke-dasharray="6,3"/>
+  <text x="918" y="751" fill="#94a3b8" font-size="9">CI/CD deployment</text>
+
+  <line x1="880" y1="763" x2="910" y2="763" stroke="#742774" stroke-width="2"/>
+  <text x="918" y="767" fill="#94a3b8" font-size="9">Database read/write</text>
+
+  <!-- Tech labels along bottom -->
+  <rect x="50" y="810" width="1100" height="30" rx="6" fill="#1e293b" opacity="0.6"/>
+  <text x="600" y="830" text-anchor="middle" fill="#64748b" font-size="10">React + TypeScript + Vite + Tailwind CSS | Azure Blob Storage + Functions + Cosmos DB | Cloudflare CDN | GitHub Actions CI/CD | Namecheap DNS</text>
+</svg>

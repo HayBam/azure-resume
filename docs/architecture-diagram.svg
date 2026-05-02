@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" font-family="Inter, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1e293b"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#1e3a8a"/>
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#34d399"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#a78bfa"/>
+      <stop offset="100%" style="stop-color:#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#fb923c"/>
+      <stop offset="100%" style="stop-color:#ea580c"/>
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#22d3ee"/>
+      <stop offset="100%" style="stop-color:#0891b2"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="620" rx="12" fill="url(#bgGrad)"/>
+
+  <!-- Title -->
+  <text x="450" y="45" text-anchor="middle" fill="#f1f5f9" font-size="20" font-weight="700">Portfolio Website — Deployment Architecture</text>
+
+  <!-- User / Browser -->
+  <rect x="355" y="70" width="190" height="60" rx="10" fill="url(#blueGrad)" filter="url(#shadow)"/>
+  <text x="450" y="100" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">User / Browser</text>
+  <text x="450" y="118" text-anchor="middle" fill="#bfdbfe" font-size="11">odunlamiayobami.com</text>
+
+  <!-- Arrow: User to Cloudflare -->
+  <line x1="450" y1="130" x2="450" y2="165" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Cloudflare -->
+  <rect x="330" y="170" width="240" height="60" rx="10" fill="url(#orangeGrad)" filter="url(#shadow)"/>
+  <text x="450" y="198" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">Cloudflare CDN</text>
+  <text x="450" y="216" text-anchor="middle" fill="#fed7aa" font-size="11">DNS, Caching, SSL</text>
+
+  <!-- Arrow: Cloudflare to Azure Storage -->
+  <line x1="370" y1="230" x2="250" y2="290" stroke="#94a3b8" stroke-width="2"/>
+
+  <!-- Arrow: Cloudflare to Azure Functions -->
+  <line x1="530" y1="230" x2="650" y2="290" stroke="#94a3b8" stroke-width="2"/>
+
+  <!-- Labels on arrows -->
+  <text x="280" y="260" text-anchor="middle" fill="#94a3b8" font-size="10" transform="rotate(-20, 280, 260)">Static files</text>
+  <text x="620" y="260" text-anchor="middle" fill="#94a3b8" font-size="10" transform="rotate(20, 620, 260)">API requests</text>
+
+  <!-- Azure Storage -->
+  <rect x="100" y="295" width="280" height="80" rx="10" fill="url(#blueGrad)" filter="url(#shadow)"/>
+  <text x="240" y="325" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">Azure Blob Storage</text>
+  <text x="240" y="345" text-anchor="middle" fill="#bfdbfe" font-size="11">$web container (Static Website)</text>
+  <text x="240" y="362" text-anchor="middle" fill="#93c5fd" font-size="10">index.html, CSS, JS bundles</text>
+
+  <!-- Azure Functions -->
+  <rect x="520" y="295" width="280" height="80" rx="10" fill="url(#purpleGrad)" filter="url(#shadow)"/>
+  <text x="660" y="325" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">Azure Functions</text>
+  <text x="660" y="345" text-anchor="middle" fill="#ddd6fe" font-size="11">resume-counter (Node.js)</text>
+  <text x="660" y="362" text-anchor="middle" fill="#c4b5fd" font-size="10">GET/POST /api/counter</text>
+
+  <!-- Arrow: Functions to Cosmos DB -->
+  <line x1="660" y1="375" x2="660" y2="420" stroke="#94a3b8" stroke-width="2"/>
+
+  <!-- Cosmos DB -->
+  <rect x="520" y="425" width="280" height="70" rx="10" fill="url(#greenGrad)" filter="url(#shadow)"/>
+  <text x="660" y="455" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">Azure Cosmos DB</text>
+  <text x="660" y="475" text-anchor="middle" fill="#d1fae5" font-size="11">resumeVisitsDb / visitors</text>
+
+  <!-- GitHub Actions Section -->
+  <rect x="140" y="440" width="280" height="140" rx="10" fill="#1e293b" stroke="#334155" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="280" y="468" text-anchor="middle" fill="#f1f5f9" font-size="14" font-weight="600">GitHub Actions CI/CD</text>
+
+  <!-- Frontend pipeline -->
+  <rect x="160" y="480" width="240" height="38" rx="6" fill="url(#cyanGrad)" opacity="0.9"/>
+  <text x="280" y="502" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">Frontend: Build (Vite) &amp; Deploy to Storage</text>
+
+  <!-- Backend pipeline -->
+  <rect x="160" y="525" width="240" height="38" rx="6" fill="url(#cyanGrad)" opacity="0.9"/>
+  <text x="280" y="547" text-anchor="middle" fill="#fff" font-size="11" font-weight="600">Backend: Deploy to Azure Functions</text>
+
+  <!-- Arrow: GitHub to Storage -->
+  <path d="M 250 440 L 240 395" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="6,3" fill="none"/>
+  <text x="218" y="415" fill="#22d3ee" font-size="9">deploy</text>
+
+  <!-- Arrow: GitHub to Functions -->
+  <path d="M 380 480 Q 500 430 540 370" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="6,3" fill="none"/>
+  <text x="480" y="415" fill="#22d3ee" font-size="9">deploy</text>
+
+  <!-- GitHub repo label -->
+  <rect x="140" y="585" width="280" height="26" rx="5" fill="#334155"/>
+  <text x="280" y="603" text-anchor="middle" fill="#94a3b8" font-size="10">Push to main branch triggers pipelines</text>
+
+  <!-- Arrowhead marker -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#94a3b8"/>
+    </marker>
+  </defs>
+</svg>
